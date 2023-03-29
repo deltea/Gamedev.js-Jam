@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Turning")]
     [SerializeField] private float turnSpeed = 5;
     [SerializeField] private float thrustingTurnSpeed = 1.5f;
+    [SerializeField] private float boostingTurnSpeed = 0.5f;
     [SerializeField] private float thrustingAngularDrag = 20;
 
     // Input
@@ -43,9 +44,10 @@ public class PlayerMovement : MonoBehaviour
         playerBody.angularDrag = thrustInput > 0 ? thrustingAngularDrag : originalAngularDrag;
 
         float force = thrustInput * (boostInput > 0 ? boostingForce : thrustForce);
+        float turn = thrustInput > 0 ? (boostInput > 0 ? boostingTurnSpeed : thrustingTurnSpeed) : turnSpeed;
 
         playerBody.AddRelativeForce(Vector2.up * force);
-        playerBody.AddTorque(turnInput * (thrustInput > 0 ? thrustingTurnSpeed : turnSpeed));
+        playerBody.AddTorque(turnInput * turn);
     }
 
     void OnRotation(InputValue value) {
