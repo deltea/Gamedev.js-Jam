@@ -826,7 +826,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0.002057613
-    width: 0.99862826
+    width: 0.99999994
     height: 0.9958847
   near clip plane: 0.3
   far clip plane: 1000
@@ -1554,7 +1554,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.745283, g: 0.745283, b: 0.19452351, a: 1}
+      maxColor: {r: 0.74509805, g: 0.1960784, b: 0.20755698, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -2075,11 +2075,11 @@ ParticleSystem:
     m_TextureColorAffectsParticles: 1
     m_TextureAlphaAffectsParticles: 1
     m_TextureBilinearFiltering: 0
-    randomDirectionAmount: 0
+    randomDirectionAmount: 1
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.0001
+      value: 0.1
       mode: 0
       spread: 0
       speed:
@@ -2136,7 +2136,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 360
+      value: 180
       mode: 0
       spread: 0
       speed:
@@ -2198,7 +2198,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 50
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2323,10 +2323,10 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.5
+          time: 0.23078524
           value: 1
           inSlope: -0
-          outSlope: -2
+          outSlope: -1.3000271
           tangentMode: 69
           weightedMode: 0
           inWeight: 0.33333334
@@ -2334,7 +2334,7 @@ ParticleSystem:
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -2
+          inSlope: -1.3000271
           outSlope: 1
           tangentMode: 69
           weightedMode: 0

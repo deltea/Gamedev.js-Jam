@@ -54,6 +54,13 @@ public class PlayerMovement : MonoBehaviour
 
     void OnThrust(InputValue value) {
         thrustInput = value.Get<float>();
+        if (boostInput > 0 && thrustInput > 0)
+        {
+            boostingParticles.Play();
+        } else
+        {
+            boostingParticles.Stop();
+        }
     }
 
     void OnBoost(InputValue value) {
