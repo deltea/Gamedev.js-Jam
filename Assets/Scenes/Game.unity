@@ -3322,10 +3322,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6614f5bb271bd4cb51c222320e2dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustForce: 100
+  thrustForce: 80
   boostingThrustForce: 70
   boostingDrag: 1
-  turnSpeed: 2
+  turnSpeed: 1.5
 --- !u!114 &1139126976
 MonoBehaviour:
   m_ObjectHideFlags: 0
