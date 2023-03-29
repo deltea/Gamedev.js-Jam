@@ -8,8 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Stats
     [SerializeField] private float thrustForce = 10;
-    [SerializeField] private float boostingThrustForce = 20;
-    [SerializeField] private float boostingDrag = 5;
+    [SerializeField] private float thrustingDrag = 20;
     [SerializeField] private float turnSpeed = 5;
 
     // Input
@@ -27,15 +26,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (boostInput > 0)
-        {
-            playerBody.AddRelativeForce(Vector2.up * thrustInput * boostingThrustForce);
-            playerBody.drag = boostingDrag;
-        } else
-        {
-            playerBody.AddRelativeForce(Vector2.up * thrustInput * thrustForce);
-            playerBody.drag = originalDrag;
-        }
+        playerBody.drag = thrustingDrag * thrustInput;
+        playerBody.gravityScale = (int)thrustInput ^ 1;
+        playerBody.AddRelativeForce(Vector2.up * thrustInput * thrustForce);
         playerBody.AddTorque(turnInput * turnSpeed);
     }
 

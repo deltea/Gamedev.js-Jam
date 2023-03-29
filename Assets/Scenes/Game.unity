@@ -3322,10 +3322,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6614f5bb271bd4cb51c222320e2dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustForce: 80
-  boostingThrustForce: 70
-  boostingDrag: 1
-  turnSpeed: 1.5
+  thrustForce: 150
+  thrustingDrag: 10
+  turnSpeed: 1
 --- !u!114 &1139126976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3369,7 +3368,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 0
   m_AngularDrag: 20
   m_GravityScale: 1
   m_Material: {fileID: 0}
