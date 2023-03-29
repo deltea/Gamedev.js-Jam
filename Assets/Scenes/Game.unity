@@ -6412,11 +6412,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrustForce: 150
   thrustingDrag: 10
-  boostingForce: 250
+  boostingForce: 300
   boostStartForce: 30
   boostingParticles: {fileID: 810158394}
   turnSpeed: 0.7
   thrustingTurnSpeed: 1.5
+  boostingTurnSpeed: 0.5
   thrustingAngularDrag: 20
 --- !u!114 &1139126976
 MonoBehaviour:
@@ -6546,6 +6547,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6054078682722526628, guid: c43cb010600045c459a8f2b740c8f622, type: 3}
   bulletSpeed: 50
   fireRate: 8
+  spread: 5
 --- !u!1001 &1242977270
 PrefabInstance:
   m_ObjectHideFlags: 0

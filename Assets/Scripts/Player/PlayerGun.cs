@@ -12,6 +12,7 @@ public class PlayerGun : MonoBehaviour
     [SerializeField] private Rigidbody2D bulletPrefab;
     [SerializeField] private float bulletSpeed = 10;
     [SerializeField] private float fireRate = 4;
+    [SerializeField] private float spread = 5;
 
     private float nextTimeToFire;
 
@@ -24,7 +25,7 @@ public class PlayerGun : MonoBehaviour
     }
 
     private void Fire() {
-        Rigidbody2D bulletBody = Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Rigidbody2D bulletBody = Instantiate(bulletPrefab, transform.position, transform.rotation * Quaternion.Euler(0, 0, Random.Range(-spread, spread)));
         bulletBody.AddRelativeForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
     }
 
