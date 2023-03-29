@@ -31,6 +31,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Value",
+                    "id": "6dbc07cf-7c93-4e92-823d-212474d1d2ae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -51,7 +60,7 @@
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Arrow Keys",
+                    "groups": "Arrow Keys;WASD",
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -62,7 +71,7 @@
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Arrow Keys",
+                    "groups": "Arrow Keys;WASD",
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -84,7 +93,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "WASD",
+                    "groups": "WASD;Arrow Keys",
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -95,7 +104,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "WASD",
+                    "groups": "WASD;Arrow Keys",
                     "action": "Rotation",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -106,7 +115,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "WASD",
+                    "groups": "WASD;Arrow Keys",
                     "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -117,7 +126,7 @@
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Arrow Keys",
+                    "groups": "Arrow Keys;WASD",
                     "action": "Thrust",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -128,7 +137,7 @@
                     "path": "<Keyboard>/x",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Arrow Keys",
+                    "groups": "Arrow Keys;WASD",
                     "action": "Boost",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -139,8 +148,30 @@
                     "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
-                    "groups": "WASD",
+                    "groups": "WASD;Arrow Keys",
                     "action": "Boost",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "872623ce-8875-438a-a3e5-806300a34ee3",
+                    "path": "<Keyboard>/z",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Arrow Keys",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e962d6b-6d88-40d5-8277-25ee1cd08b70",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "WASD;Arrow Keys",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
