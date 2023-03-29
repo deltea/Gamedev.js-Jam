@@ -1595,15 +1595,15 @@ Camera:
   m_FocalLength: 50
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0013717421
-    y: 0
-    width: 0.9958848
-    height: 0.99999994
+    x: 0
+    y: 0.002057613
+    width: 0.99862826
+    height: 0.9958847
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.1
+  orthographic size: 8.642858
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1641,15 +1641,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 10
-  m_RefResolutionX: 150
-  m_RefResolutionY: 150
+  m_AssetsPPU: 14
+  m_RefResolutionX: 185
+  m_RefResolutionY: 185
   m_CropFrame: 0
   m_GridSnapping: 2
   m_UpscaleRT: 0
@@ -3322,7 +3322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6614f5bb271bd4cb51c222320e2dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustForce: 20
+  thrustForce: 40
   turnSpeed: 2
 --- !u!114 &1139126976
 MonoBehaviour:
@@ -3350,7 +3350,7 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: WASD
+  m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
@@ -3367,7 +3367,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 20
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -5242,8 +5242,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2131563937}
   - component: {fileID: 2131563938}
-  - component: {fileID: 2131563939}
   - component: {fileID: 2131563940}
+  - component: {fileID: 2131563939}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -5348,7 +5348,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 2131563936}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e49ab6507f683e04cb6462155ebd9e38, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

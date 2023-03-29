@@ -22,13 +22,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate() {
         playerBody.AddRelativeForce(Vector2.up * thrustInput * thrustForce);
-        // if (playerBody.rotation > 90 && playerBody.rotation < 180)
-        // {
-        // } else
-        // {
-        //     playerBody.AddRelativeForce(Vector2.up * thrustInput * thrustForce / 2);      
-        // }
-
         playerBody.AddTorque(turnInput * turnSpeed);
     }
 
