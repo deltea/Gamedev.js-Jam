@@ -6,6 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
 
+    [SerializeField] private Transform graphics;
+    [SerializeField] private float rotationSmoothing = 0.01f;
+
     // Stats
     [Header("Thrusting")]
     [SerializeField] private float thrustForce = 10;
@@ -29,13 +32,19 @@ public class PlayerMovement : MonoBehaviour
 
     Rigidbody2D playerBody;
     float originalDrag;
-    private float originalAngularDrag;
+    float originalAngularDrag;
+    Vector3 targetRotation; 
 
     void Start() {
         playerBody = GetComponent<Rigidbody2D>();
 
         originalDrag = playerBody.drag;
         originalAngularDrag = playerBody.angularDrag;
+    }
+
+    void Update() {
+        Quaternion targetRotation = Quaternion.Euler(-90, playerBody.velocity.normalized.x * 90, 0);
+        graphics.localRotation = Quaternion.Lerp(graphics.localRotation, targetRotation, rotationSmoothing);
     }
 
     void FixedUpdate() {
@@ -56,13 +65,9 @@ public class PlayerMovement : MonoBehaviour
 
     void OnThrust(InputValue value) {
         thrustInput = value.Get<float>();
-        if (boostInput > 0 && thrustInput > 0)
-        {
-            boostingParticles.Play();
-        } else
-        {
-            boostingParticles.Stop();
-        }
+
+        if (boostInput > 0 && thrustInput > 0) boostingParticles.Play();
+        else boostingParticles.Stop();
     }
 
     void OnBoost(InputValue value) {
