@@ -11355,6 +11355,7 @@ GameObject:
   - component: {fileID: 1139126977}
   - component: {fileID: 1139126975}
   - component: {fileID: 1139126979}
+  - component: {fileID: 1139126980}
   m_Layer: 3
   m_Name: Basic Plane
   m_TagString: Player
@@ -11486,6 +11487,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83cb01206ca4d4445965a3717d43a77c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1139126980
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139126973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d114a970b23a34ba6dfb82f346e16f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1 &1159863111
 GameObject:
   m_ObjectHideFlags: 0
@@ -11707,8 +11721,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728dbea48f4068044a4798bb41ef5c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 10
+  enemyCount: 1
   enemyPrefab: {fileID: 4827826265518555860, guid: e93405f1c24095a45805a9baebc8972f, type: 3}
+  enemySpawnDelay: 2
 --- !u!61 &1285180910
 BoxCollider2D:
   m_ObjectHideFlags: 0

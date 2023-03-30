@@ -229,7 +229,7 @@ GameObject:
   - component: {fileID: 1446524969787938711}
   m_Layer: 7
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -326,7 +326,7 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 1224
   m_ForceMagnitude: 200
   m_ForceVariation: 10
   m_DistanceScale: 100
