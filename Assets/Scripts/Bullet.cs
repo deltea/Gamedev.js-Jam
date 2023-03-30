@@ -11,4 +11,11 @@ public class Bullet : MonoBehaviour
         bulletBody = GetComponent<Rigidbody2D>();
     }
 
+    void OnTriggerEnter2D(Collider2D trigger) {
+        if (trigger.CompareTag("BulletBounds") || trigger.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
