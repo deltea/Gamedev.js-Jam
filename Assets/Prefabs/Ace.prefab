@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f40e98685f5baf4f8e6e8cc8f854dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 80
+  speed: 60
   rotationSmoothing: 1
 --- !u!250 &1446524969787938711
 PointEffector2D:
