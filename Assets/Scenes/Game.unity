@@ -11707,10 +11707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728dbea48f4068044a4798bb41ef5c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 500
+  enemyCount: 10
   enemyPrefab: {fileID: 4827826265518555860, guid: e93405f1c24095a45805a9baebc8972f, type: 3}
-  rotationSmoothingRange: 0.2
-  speedRange: 5
 --- !u!61 &1285180910
 BoxCollider2D:
   m_ObjectHideFlags: 0
