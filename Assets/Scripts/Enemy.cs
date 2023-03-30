@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour
     public void Die() {
         Destroy(gameObject);
         ParticleManager.Instance.Play(ParticleManager.Instance.explosion, transform.position, Quaternion.identity);
+        FollowCamera.Instance.ScreenShake(0.2f, 0.2f);
+        FollowCamera.Instance.Hitstop(0.1f);
     }
 
     void OnTriggerEnter2D(Collider2D trigger) {
