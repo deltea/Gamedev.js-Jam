@@ -7,6 +7,7 @@ public class PlayerGun : MonoBehaviour
 
     public bool canShoot = true;
     public bool shooting;
+    [SerializeField] private ParticleSystem muzzleFlash;
 
     [Header("Stats")]
     [SerializeField] private Rigidbody2D bulletPrefab;
@@ -27,6 +28,7 @@ public class PlayerGun : MonoBehaviour
     private void Fire() {
         Rigidbody2D bulletBody = Instantiate(bulletPrefab, transform.position, transform.rotation * Quaternion.Euler(0, 0, Random.Range(-spread, spread)));
         bulletBody.AddRelativeForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
+        muzzleFlash.Play();
     }
 
 }
