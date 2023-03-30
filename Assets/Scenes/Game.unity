@@ -6411,6 +6411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphics: {fileID: 1134254211}
+  yRotationAmount: 40
   rotationSmoothing: 0.01
   thrustForce: 150
   thrustingDrag: 10
@@ -6420,7 +6421,7 @@ MonoBehaviour:
   turnSpeed: 0.7
   thrustingTurnSpeed: 1.5
   boostingTurnSpeed: 0.5
-  thrustingAngularDrag: 20
+  thrustingAngularDrag: 30
 --- !u!114 &1139126976
 MonoBehaviour:
   m_ObjectHideFlags: 0

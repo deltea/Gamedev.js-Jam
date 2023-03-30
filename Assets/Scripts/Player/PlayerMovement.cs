@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     [SerializeField] private Transform graphics;
+    [SerializeField] private float yRotationAmount = 20;
     [SerializeField] private float rotationSmoothing = 0.01f;
 
     // Stats
@@ -33,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D playerBody;
     float originalDrag;
     float originalAngularDrag;
-    Vector3 targetRotation; 
 
     void Start() {
         playerBody = GetComponent<Rigidbody2D>();
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update() {
-        Quaternion targetRotation = Quaternion.Euler(-90, playerBody.velocity.normalized.x * 90, 0);
+        Quaternion targetRotation = Quaternion.Euler(-90, playerBody.velocity.normalized.x * yRotationAmount, 0);
         graphics.localRotation = Quaternion.Lerp(graphics.localRotation, targetRotation, rotationSmoothing);
     }
 
