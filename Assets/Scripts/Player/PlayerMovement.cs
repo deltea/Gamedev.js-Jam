@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Thrusting")]
     [SerializeField] private float thrustForce = 10;
     [SerializeField] private float thrustingDrag = 20;
+    [SerializeField] private ParticleSystem thrustParticles;
 
     [Header("Boosting")]
     [SerializeField] private float boostingForce = 10;
@@ -69,6 +70,14 @@ public class PlayerMovement : MonoBehaviour
         playerBody.AddTorque(turnInput * turn);
     }
 
+    private void Boost() {
+        playerBody.AddRelativeForce(Vector2.up * boostStartForce, ForceMode2D.Impulse);
+        boostingParticles.Play();
+
+        FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
+        FollowCamera.Instance.Hitstop(0.05f);
+    }
+
     void OnRotation(InputValue value) {
         turnInput = value.Get<float>();
     }
@@ -76,21 +85,23 @@ public class PlayerMovement : MonoBehaviour
     void OnThrust(InputValue value) {
         thrustInput = value.Get<float>();
 
-        if (boostInput > 0 && thrustInput > 0) boostingParticles.Play();
+        if (boostInput > 0 && thrustInput > 0) Boost();
         else boostingParticles.Stop();
+
+        if (thrustInput > 0 && boostInput == 0) thrustParticles.Play();
+        else if (thrustInput == 0) thrustParticles.Stop();
     }
 
     void OnBoost(InputValue value) {
         boostInput = value.Get<float>();
-        if (boostInput > 0 && thrustInput > 0)
-        {
-            playerBody.AddRelativeForce(Vector2.up * boostStartForce, ForceMode2D.Impulse);
-            boostingParticles.Play();
 
-            FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
-            FollowCamera.Instance.Hitstop(0.05f);
-        } else if (boostInput == 0) {
+        if (boostInput > 0 && thrustInput > 0) {
+            thrustParticles.Stop();
+            Boost();
+        }
+        else if (boostInput == 0) {
             boostingParticles.Stop();
+            if (thrustInput > 0) thrustParticles.Play();
         }
     }
 
