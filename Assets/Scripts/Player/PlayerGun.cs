@@ -29,6 +29,7 @@ public class PlayerGun : MonoBehaviour
         Rigidbody2D bulletBody = Instantiate(bulletPrefab, transform.position, transform.rotation * Quaternion.Euler(0, 0, Random.Range(-spread, spread)));
         bulletBody.AddRelativeForce(Vector2.up * bulletSpeed, ForceMode2D.Impulse);
         muzzleFlash.Play();
+        FollowCamera.Instance.ScreenShake(0.05f, 0.08f);
     }
 
 }

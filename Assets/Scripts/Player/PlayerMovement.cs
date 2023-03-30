@@ -76,6 +76,9 @@ public class PlayerMovement : MonoBehaviour
         {
             playerBody.AddRelativeForce(Vector2.up * boostStartForce, ForceMode2D.Impulse);
             boostingParticles.Play();
+
+            FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
+            FollowCamera.Instance.Hitstop(0.05f);
         } else if (boostInput == 0) {
             boostingParticles.Stop();
         }
