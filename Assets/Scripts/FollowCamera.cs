@@ -6,6 +6,7 @@ public class FollowCamera : MonoBehaviour
 {
 
     [SerializeField] private float smoothing = 0.1f;
+    [SerializeField] private float dynamicCamera = 5;
     [SerializeField] private Transform player;
 
     // Screen shake
@@ -36,6 +37,8 @@ public class FollowCamera : MonoBehaviour
 
     void FixedUpdate() {
         Vector3 targetPos = new Vector3(player.position.x, player.position.y, -10);
+        targetPos += player.rotation * Vector3.up * dynamicCamera;
+        targetPos.z = -10;
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothing);
     }
 

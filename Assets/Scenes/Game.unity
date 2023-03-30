@@ -645,7 +645,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326666319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.467, z: 0}
+  m_LocalPosition: {x: 0, y: 0.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -693,7 +693,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -807,7 +807,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.1
+      scalar: 0.05
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -914,7 +914,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.74509805, g: 0.19607843, b: 0.20784314, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1029,7 +1029,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.8
+      scalar: 1.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -5714,7 +5714,7 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0.002057613
-    width: 0.99862826
+    width: 0.99999994
     height: 0.9958847
   near clip plane: 0.3
   far clip plane: 1000
@@ -5787,6 +5787,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 0.1
+  dynamicCamera: 3
   player: {fileID: 1139126974}
 --- !u!1001 &555992159
 PrefabInstance:
@@ -11437,7 +11438,7 @@ MonoBehaviour:
   canShoot: 1
   shooting: 0
   muzzleFlash: {fileID: 326666322}
-  bulletPrefab: {fileID: 6054078682722526628, guid: 5a0cd5b362cdad049a13be82a24ad881, type: 3}
+  bulletPrefab: {fileID: 6054078682722526628, guid: c43cb010600045c459a8f2b740c8f622, type: 3}
   bulletSpeed: 50
   fireRate: 8
   spread: 5

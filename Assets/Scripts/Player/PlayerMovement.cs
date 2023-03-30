@@ -35,6 +35,16 @@ public class PlayerMovement : MonoBehaviour
     float originalDrag;
     float originalAngularDrag;
 
+    #region Singleton
+    
+    static public PlayerMovement Instance = null;
+    void Awake() {
+        if (Instance == null) Instance = this;
+        else if (Instance != this) Destroy(gameObject);
+    }
+    
+    #endregion
+
     void Start() {
         playerBody = GetComponent<Rigidbody2D>();
 
