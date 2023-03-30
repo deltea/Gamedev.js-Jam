@@ -5,8 +5,8 @@ using UnityEngine;
 public class FollowEnemy : MonoBehaviour
 {
 
-    [SerializeField] private float speed = 5;
-    [SerializeField] private float rotationSmoothing = 0.05f;
+    public float speed = 5;
+    public float rotationSmoothing = 0.05f;
 
     Transform player;
     Rigidbody2D enemyBody;

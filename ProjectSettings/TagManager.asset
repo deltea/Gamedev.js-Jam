@@ -15,8 +15,8 @@ TagManager:
   - Bullets
   - Enemies
   - EnemyBullets
-  - 
-  - 
+  - GroundCollider
+  - Ground
   - 
   - 
   - 
