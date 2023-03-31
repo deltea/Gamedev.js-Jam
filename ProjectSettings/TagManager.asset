@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - BulletBounds
   - Ground
+  - Enemy Bullet
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,7 @@ TagManager:
   - EnemyBullets
   - GroundCollider
   - Ground
-  - RadarBounds
+  - 
   - 
   - 
   - 

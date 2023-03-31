@@ -30,6 +30,10 @@ public class PlayerHealth : MonoBehaviour
         {
             trigger.GetComponent<Enemy>().Die();
             GetHurt(10);
+        } else if (trigger.CompareTag("Enemy Bullet"))
+        {
+            Destroy(trigger.gameObject);
+            GetHurt(5);
         }
     }
 
