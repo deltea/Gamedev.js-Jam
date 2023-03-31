@@ -271,12 +271,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4827826265518555856}
   - component: {fileID: 4827826265518555859}
+  - component: {fileID: 7561688861327559091}
   - component: {fileID: 4827826265518555858}
   - component: {fileID: 4827826265518555861}
   - component: {fileID: 4827826265518555860}
   - component: {fileID: 1446524969787938711}
   m_Layer: 7
-  m_Name: Enemy
+  m_Name: Basic Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -312,11 +313,27 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.2
+--- !u!58 &7561688861327559091
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4827826265518555857}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 1
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
 --- !u!50 &4827826265518555858
 Rigidbody2D:
   serializedVersion: 4
@@ -376,10 +393,10 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 1224
-  m_ForceMagnitude: 200
-  m_ForceVariation: 10
-  m_DistanceScale: 100
+    m_Bits: 128
+  m_ForceMagnitude: 10
+  m_ForceVariation: 0
+  m_DistanceScale: 1
   m_ForceSource: 0
   m_ForceTarget: 0
   m_ForceMode: 0

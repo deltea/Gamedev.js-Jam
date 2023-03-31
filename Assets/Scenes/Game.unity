@@ -6694,7 +6694,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothing: 0.1
-  dynamicCamera: 4
+  dynamicCamera: 5
   player: {fileID: 1139126974}
 --- !u!114 &519420035
 MonoBehaviour:
@@ -13566,9 +13566,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728dbea48f4068044a4798bb41ef5c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 5
-  enemyPrefab: {fileID: 4827826265518555860, guid: e93405f1c24095a45805a9baebc8972f, type: 3}
-  enemySpawnDelay: 2
+  currentWave: 0
+  totalEnemiesInWave: 5
+  basicEnemyFlock: 3
+  maxAces: 2
+  enemySpawnDelay: 5
+  startingBasicEnemyCount: 5
+  startingAceCount: 1
+  basicEnemyPrefab: {fileID: 4827826265518555860, guid: e93405f1c24095a45805a9baebc8972f, type: 3}
+  aceEnemyPrefab: {fileID: 4827826265518555860, guid: a27fa0804ca4884409da2db7ae31d8f1, type: 3}
 --- !u!61 &1285180910
 BoxCollider2D:
   m_ObjectHideFlags: 0
