@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform graphics;
     [SerializeField] private float yRotationAmount = 20;
+    [SerializeField] private float yRotationRange = 10;
     [SerializeField] private float rotationSmoothing = 0.01f;
 
     // Stats
@@ -54,7 +55,18 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Update() {
-        Quaternion targetRotation = Quaternion.Euler(-90, playerBody.velocity.normalized.x * yRotationAmount, 0);
+        float yRotation = 0;
+        float zRotation = transform.eulerAngles.z;
+
+        if (zRotation > yRotationRange && zRotation < 180 - yRotationRange)
+        {
+            yRotation = -1;
+        } else if (zRotation > 180 + yRotationRange && zRotation < 360 - yRotationRange)
+        {
+            yRotation = 1;
+        }
+
+        Quaternion targetRotation = Quaternion.Euler(-90, yRotation * yRotationAmount, 0);
         graphics.localRotation = Quaternion.Lerp(graphics.localRotation, targetRotation, rotationSmoothing);
     }
 

@@ -13116,8 +13116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   graphics: {fileID: 1134254211}
-  yRotationAmount: 40
-  rotationSmoothing: 0.01
+  yRotationAmount: 90
+  yRotationRange: 60
+  rotationSmoothing: 0.02
   thrustForce: 200
   thrustingDrag: 10
   thrustParticles: {fileID: 2093070177}
@@ -13566,7 +13567,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyCount: 5
-  enemyPrefab: {fileID: 4827826265518555860, guid: a27fa0804ca4884409da2db7ae31d8f1, type: 3}
+  enemyPrefab: {fileID: 4827826265518555860, guid: e93405f1c24095a45805a9baebc8972f, type: 3}
   enemySpawnDelay: 2
 --- !u!61 &1285180910
 BoxCollider2D:
