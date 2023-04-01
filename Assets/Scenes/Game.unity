@@ -6550,7 +6550,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.642858
+  orthographic size: 10.083333
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -6595,7 +6595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 14
+  m_AssetsPPU: 12
   m_RefResolutionX: 185
   m_RefResolutionY: 185
   m_CropFrame: 0
@@ -13493,10 +13493,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalEnemiesInWave: 5
-  basicEnemyFlock: 0
-  maxAces: 2000000
+  basicEnemyFlock: 3
+  maxAces: 2
   enemySpawnDelay: 5
-  startingBasicEnemyCount: 0
+  startingBasicEnemyCount: 3
   startingAceCount: 1
   basicEnemyPrefab: {fileID: 4827826265518555860, guid: e93405f1c24095a45805a9baebc8972f, type: 3}
   aceEnemyPrefab: {fileID: 4827826265518555860, guid: a27fa0804ca4884409da2db7ae31d8f1, type: 3}
@@ -14092,7 +14092,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.642858
+  orthographic size: 10.083333
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
@@ -14136,7 +14136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
-  m_AssetsPPU: 14
+  m_AssetsPPU: 12
   m_RefResolutionX: 185
   m_RefResolutionY: 185
   m_CropFrame: 0
