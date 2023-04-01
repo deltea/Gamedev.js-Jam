@@ -9,7 +9,6 @@ public class AceEnemy : MonoBehaviour
     [SerializeField] private Transform firePoint;
 
     [Header("Stats")]
-    [SerializeField] private float spread = 10;
     [SerializeField] private float lookAhead = 1;
     [SerializeField] private float fireDelay = 2;
     [SerializeField] private float bulletSpeed = 10;
