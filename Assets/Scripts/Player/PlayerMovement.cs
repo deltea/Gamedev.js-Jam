@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Boosting")]
     [SerializeField] private float boostingForce = 10;
     [SerializeField] private float boostStartForce = 5;
+    [SerializeField] private float boostKillTime = 0.5f;
     [SerializeField] private ParticleSystem boostingParticles;
 
     [Header("Turning")]
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float thrustInput;
     private float turnInput;
     private float boostInput;
+    [HideInInspector] public bool boostKilling;
 
     Rigidbody2D playerBody;
     float originalDrag;
@@ -82,12 +84,16 @@ public class PlayerMovement : MonoBehaviour
         playerBody.AddTorque(turnInput * turn);
     }
 
-    private void Boost() {
+    private IEnumerator Boost() {
         playerBody.AddRelativeForce(Vector2.up * boostStartForce, ForceMode2D.Impulse);
         boostingParticles.Play();
 
         FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
         FollowCamera.Instance.Hitstop(0.05f);
+
+        boostKilling = true;
+        yield return new WaitForSeconds(boostKillTime);
+        boostKilling = false;
     }
 
     void OnRotation(InputValue value) {
@@ -97,7 +103,7 @@ public class PlayerMovement : MonoBehaviour
     void OnThrust(InputValue value) {
         thrustInput = value.Get<float>();
 
-        if (boostInput > 0 && thrustInput > 0) Boost();
+        if (boostInput > 0 && thrustInput > 0) StartCoroutine(Boost());
         else boostingParticles.Stop();
 
         if (thrustInput > 0 && boostInput == 0) thrustParticles.Play();
@@ -109,7 +115,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (boostInput > 0 && thrustInput > 0) {
             thrustParticles.Stop();
-            Boost();
+            StartCoroutine(Boost());
         }
         else if (boostInput == 0) {
             boostingParticles.Stop();

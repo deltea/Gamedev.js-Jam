@@ -28,8 +28,10 @@ public class PlayerHealth : MonoBehaviour
     void OnTriggerEnter2D(Collider2D trigger) {
         if (trigger.CompareTag("Enemy"))
         {
-            trigger.GetComponent<Enemy>().Die();
-            GetHurt(10);
+            if (PlayerMovement.Instance.boostKilling)
+            {
+                trigger.GetComponent<Enemy>().Die();
+            }
         } else if (trigger.CompareTag("Enemy Bullet"))
         {
             Destroy(trigger.gameObject);

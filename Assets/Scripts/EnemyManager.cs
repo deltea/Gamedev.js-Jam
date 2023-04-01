@@ -75,7 +75,7 @@ public class EnemyManager : MonoBehaviour
             } else
             {
                 NextWave();
-                break;
+                // break;
             }
         }
     }
