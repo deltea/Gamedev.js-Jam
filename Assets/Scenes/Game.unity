@@ -13494,7 +13494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   totalEnemiesInWave: 5
   basicEnemyFlock: 0
-  maxAces: 20000
+  maxAces: 2000000
   enemySpawnDelay: 5
   startingBasicEnemyCount: 0
   startingAceCount: 1

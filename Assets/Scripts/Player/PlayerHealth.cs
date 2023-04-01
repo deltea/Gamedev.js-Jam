@@ -25,6 +25,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void GetHurt() {
         health--;
+
+        FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
+        FollowCamera.Instance.Hitstop(0.1f);
+
         print("Oooooff! Your health is now: " + health);
         if (health <= 0)
         {

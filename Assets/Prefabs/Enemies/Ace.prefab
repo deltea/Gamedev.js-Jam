@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f40e98685f5baf4f8e6e8cc8f854dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 80
+  speed: 70
   rotationSmoothing: 1
 --- !u!114 &2471294406813252859
 MonoBehaviour:
@@ -350,10 +350,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 8819676298580158015, guid: e628d90142ffa6348ace748b3e9edcab, type: 3}
   firePoint: {fileID: 7401239539510103506}
-  spread: 45
-  lookAhead: 5
-  fireDelay: 2
-  bulletSpeed: 30
+  lookAhead: 10
+  fireDelay: 4
+  bulletSpeed: 25
   timeBetweenBullets: 0.2
   numOfBullets: 3
 --- !u!250 &1446524969787938711
