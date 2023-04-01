@@ -11,13 +11,13 @@ public class Enemy : MonoBehaviour
         health -= damage;
         if (health <= 0)
         {
-            Die();
+            Die(ParticleManager.Instance.explosion);
         }
     }
 
-    public void Die() {
+    public void Die(ParticleSystem particles) {
         Destroy(gameObject);
-        ParticleManager.Instance.Play(ParticleManager.Instance.explosion, transform.position, Quaternion.identity);
+        ParticleManager.Instance.Play(particles, transform.position, Quaternion.identity);
         FollowCamera.Instance.ScreenShake(0.2f, 0.2f);
         FollowCamera.Instance.Hitstop(0.1f);
     }

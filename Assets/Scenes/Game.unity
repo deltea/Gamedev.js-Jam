@@ -6543,9 +6543,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.002057613
-    width: 0.99999994
-    height: 0.9958847
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -7350,6 +7350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1067332755706026249, guid: 635e372bd64ca8046ab5e684ee2ff10b, type: 3}
+  enemyExplosion: {fileID: 1067332755706026249, guid: 053209502b640bb4296685b88597487e, type: 3}
 --- !u!1001 &781013211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13047,7 +13048,7 @@ MonoBehaviour:
   thrustParticles: {fileID: 2093070177}
   boostingForce: 300
   boostStartForce: 30
-  boostKillTime: 0.2
+  boostKillTime: 0.5
   boostingParticles: {fileID: 810158394}
   turnSpeed: 5
   thrustingTurnSpeed: 15
@@ -14084,9 +14085,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.002057613
-    width: 0.99999994
-    height: 0.9958847
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

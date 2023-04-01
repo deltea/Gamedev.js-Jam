@@ -5,16 +5,27 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
 
-    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private int maxHealth = 5;
     
-    private float health;
+    private int health;
+
+    #region Singleton
+    
+    static public PlayerHealth Instance = null;
+    void Awake() {
+        if (Instance == null) Instance = this;
+        else if (Instance != this) Destroy(gameObject);
+    }
+    
+    #endregion
 
     void Start() {
         health = maxHealth;
     }
 
-    private void GetHurt(float damage) {
-        health -= damage;
+    public void GetHurt() {
+        health--;
+        print("Oooooff! Your health is now: " + health);
         if (health <= 0)
         {
             Die();
@@ -26,16 +37,13 @@ public class PlayerHealth : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D trigger) {
-        if (trigger.CompareTag("Enemy"))
+        if (trigger.CompareTag("Enemy") && PlayerMovement.Instance.boostKilling)
         {
-            if (PlayerMovement.Instance.boostKilling)
-            {
-                trigger.GetComponent<Enemy>().Die();
-            }
+            trigger.GetComponent<Enemy>().Die(ParticleManager.Instance.explosion);
         } else if (trigger.CompareTag("Enemy Bullet"))
         {
             Destroy(trigger.gameObject);
-            GetHurt(5);
+            GetHurt();
         }
     }
 
