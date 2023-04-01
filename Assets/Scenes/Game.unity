@@ -6543,9 +6543,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: 0.002057613
+    width: 0.99999994
+    height: 0.9958847
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -13052,7 +13052,7 @@ MonoBehaviour:
   boostingParticles: {fileID: 810158394}
   turnSpeed: 5
   thrustingTurnSpeed: 15
-  boostingTurnSpeed: 5
+  boostingTurnSpeed: 8
   thrustingAngularDrag: 30
   boostKilling: 0
 --- !u!114 &1139126976
@@ -13146,7 +13146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d114a970b23a34ba6dfb82f346e16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 5
 --- !u!1 &1159863111
 GameObject:
   m_ObjectHideFlags: 0
@@ -13493,10 +13493,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalEnemiesInWave: 5
-  basicEnemyFlock: 3
-  maxAces: 2
+  basicEnemyFlock: 0
+  maxAces: 20000
   enemySpawnDelay: 5
-  startingBasicEnemyCount: 5
+  startingBasicEnemyCount: 0
   startingAceCount: 1
   basicEnemyPrefab: {fileID: 4827826265518555860, guid: e93405f1c24095a45805a9baebc8972f, type: 3}
   aceEnemyPrefab: {fileID: 4827826265518555860, guid: a27fa0804ca4884409da2db7ae31d8f1, type: 3}
@@ -14085,9 +14085,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: 0.002057613
+    width: 0.99999994
+    height: 0.9958847
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60

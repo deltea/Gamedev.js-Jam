@@ -59,6 +59,7 @@ public class DroneEnemy : MonoBehaviour
     private IEnumerator Attack() {
         enemyBody.AddRelativeForce(Vector2.up * beforeExplosionBoost, ForceMode2D.Impulse);
         followEnemy.speed *= followMultiplier;
+        followEnemy.rotationSmoothing = 1;
 
         yield return new WaitForSeconds(explodeDelay);
 
