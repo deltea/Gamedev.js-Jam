@@ -5,9 +5,16 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
 
+    public bool isInvincible = false;
+
+    [SerializeField] private GameObject graphics;
+    [SerializeField] private float invincibleTime = 2;
+    [SerializeField] private float invincibleFlashDelay = 0.2f;
     [SerializeField] private int maxHealth = 5;
     
     private int health;
+
+    Collider2D playerCollider;
 
     #region Singleton
     
@@ -21,10 +28,13 @@ public class PlayerHealth : MonoBehaviour
 
     void Start() {
         health = maxHealth;
+
+        playerCollider = GetComponent<Collider2D>();
     }
 
     public void GetHurt() {
         health--;
+        StartCoroutine(Invincible());
 
         AudioManager.Instance.PlaySound(AudioManager.Instance.hurt);
 
@@ -38,6 +48,26 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    private IEnumerator Flash() {
+        while (true)
+        {
+            graphics.SetActive(false);
+            yield return new WaitForSeconds(invincibleFlashDelay);
+            graphics.SetActive(true);
+            yield return new WaitForSeconds(invincibleFlashDelay);
+        }
+    }
+
+    private IEnumerator Invincible() {
+        isInvincible = true;
+
+        StartCoroutine(Flash());
+        yield return new WaitForSeconds(invincibleTime);
+        StopAllCoroutines();
+        
+        isInvincible = false;
+    }
+
     private void Die() {
         print("You DIED");
     }
@@ -46,7 +76,7 @@ public class PlayerHealth : MonoBehaviour
         if (trigger.CompareTag("Enemy") && PlayerMovement.Instance.boostKilling)
         {
             trigger.GetComponent<Enemy>().Die(ParticleManager.Instance.explosion);
-        } else if (trigger.CompareTag("Enemy Bullet"))
+        } else if (trigger.CompareTag("Enemy Bullet") && !isInvincible && !PlayerMovement.Instance.boostKilling)
         {
             Destroy(trigger.gameObject);
             GetHurt();

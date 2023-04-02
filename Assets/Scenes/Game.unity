@@ -6672,9 +6672,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.002057613
-    width: 0.99999994
-    height: 0.9958847
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -13422,6 +13422,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92d114a970b23a34ba6dfb82f346e16f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
+  graphics: {fileID: 1134254210}
+  invincibleTime: 2
+  invincibleFlashDelay: 0.2
   maxHealth: 5
 --- !u!1 &1159863111
 GameObject:
@@ -14361,9 +14365,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.002057613
-    width: 0.99999994
-    height: 0.9958847
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
