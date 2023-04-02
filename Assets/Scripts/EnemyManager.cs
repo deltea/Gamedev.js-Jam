@@ -5,7 +5,8 @@ using UnityEngine;
 public enum EnemyType
 {
     Basic,
-    Ace
+    Ace,
+    Heavy
 }
 
 public class EnemyManager : MonoBehaviour
@@ -14,17 +15,17 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private int totalEnemiesInWave = 5;
     [SerializeField] private int basicEnemyFlock = 3;
     [SerializeField] private int maxAces = 2;
+    [SerializeField] private int maxHeavies = 1;
     [SerializeField] private float enemySpawnDelay = 1;
 
-    [Header("Starting enemies")]
-    [SerializeField] private int startingBasicEnemyCount = 5;
-    [SerializeField] private int startingAceCount = 1;
-
     [Header("Enemies")]
-    [SerializeField] private FollowEnemy basicEnemyPrefab;
-    [SerializeField] private FollowEnemy aceEnemyPrefab;
+    [SerializeField] private DroneEnemy basicEnemyPrefab;
+    [SerializeField] private AceEnemy aceEnemyPrefab;
+    [SerializeField] private HeavyEnemy heavyEnemyPrefab;
 
     private int acesDeployed = 0;
+    private int heaviesDeployed = 0;
+
     private int enemiesDeployed = 0;
     private int currentWave = 1;
 
@@ -32,17 +33,15 @@ public class EnemyManager : MonoBehaviour
 
     void Start() {
         box = GetComponent<BoxCollider2D>();
-        StartCoroutine(EnemySpawnRoutine());
 
-        SpawnBasicEnemies(startingBasicEnemyCount);
-        for (int i = 0; i < startingAceCount; i++) SpawnAceEnemy();
+        StartCoroutine(EnemySpawnRoutine());
     }
 
     private void SpawnBasicEnemies(int num) {
         GetRandomPosition(out float x, out float y);
         for (int i = 0; i < num; i++)
         {
-            FollowEnemy enemy = Instantiate(basicEnemyPrefab, new Vector2(x, y) + Random.insideUnitCircle * 0.01f, Quaternion.identity);
+            Instantiate(basicEnemyPrefab, new Vector2(x, y) + Random.insideUnitCircle * 0.01f, Quaternion.identity);
         }
     }
 
@@ -50,11 +49,23 @@ public class EnemyManager : MonoBehaviour
         if (acesDeployed < maxAces)
         {
             GetRandomPosition(out float x, out float y);
-            FollowEnemy enemy = Instantiate(aceEnemyPrefab, new Vector2(x, y), Quaternion.identity);
+            Instantiate(aceEnemyPrefab, new Vector2(x, y), Quaternion.identity);
             acesDeployed++;
         } else
         {
             SpawnBasicEnemies(basicEnemyFlock);
+        }
+    }
+
+    private void SpawnHeavyEnemy() {
+        if (heaviesDeployed < maxHeavies)
+        {
+            GetRandomPosition(out float x, out float y);
+            Instantiate(heavyEnemyPrefab, new Vector2(x, y), Quaternion.identity);
+            heaviesDeployed++;
+        } else
+        {
+            SpawnAceEnemy();
         }
     }
 
@@ -68,6 +79,7 @@ public class EnemyManager : MonoBehaviour
                 switch (randomEnemyType)
                 {
                     case EnemyType.Ace: { SpawnAceEnemy(); break; }
+                    case EnemyType.Heavy: { SpawnHeavyEnemy(); break; }
                     default: { SpawnBasicEnemies(basicEnemyFlock); break; }
                 }
 

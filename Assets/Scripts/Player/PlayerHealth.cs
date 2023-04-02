@@ -26,6 +26,8 @@ public class PlayerHealth : MonoBehaviour
     public void GetHurt() {
         health--;
 
+        AudioManager.Instance.PlaySound(AudioManager.Instance.hurt);
+
         FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
         FollowCamera.Instance.Hitstop(0.1f);
 

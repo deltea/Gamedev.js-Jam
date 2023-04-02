@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     public void Die(ParticleSystem particles) {
         Destroy(gameObject);
+
+        AudioManager.Instance.PlayRandomSound(AudioManager.Instance.explosions);
         ParticleManager.Instance.Play(particles, transform.position, Quaternion.identity);
         FollowCamera.Instance.ScreenShake(0.2f, 0.2f);
         FollowCamera.Instance.Hitstop(0.1f);
