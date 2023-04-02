@@ -27,14 +27,30 @@ public class EnemyManager : MonoBehaviour
     private int heaviesDeployed = 0;
 
     private int enemiesDeployed = 0;
-    private int currentWave = 1;
+    private int enemiesDestroyed = 0;
+    private int currentWave = 0;
 
     BoxCollider2D box;
+
+    #region Singleton
+    
+    static public EnemyManager Instance = null;
+    void Awake() {
+        if (Instance == null) Instance = this;
+        else if (Instance != this) Destroy(gameObject);
+    }
+    
+    #endregion
 
     void Start() {
         box = GetComponent<BoxCollider2D>();
 
+        NextWave();
         StartCoroutine(EnemySpawnRoutine());
+    }
+
+    public void DestroyedEnemy() {
+        enemiesDestroyed++;
     }
 
     private void SpawnBasicEnemies(int num) {
@@ -42,6 +58,8 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < num; i++)
         {
             Instantiate(basicEnemyPrefab, new Vector2(x, y) + Random.insideUnitCircle * 0.01f, Quaternion.identity);
+
+            enemiesDeployed++;
         }
     }
 
@@ -50,7 +68,9 @@ public class EnemyManager : MonoBehaviour
         {
             GetRandomPosition(out float x, out float y);
             Instantiate(aceEnemyPrefab, new Vector2(x, y), Quaternion.identity);
+
             acesDeployed++;
+            enemiesDeployed++;
         } else
         {
             SpawnBasicEnemies(basicEnemyFlock);
@@ -62,7 +82,9 @@ public class EnemyManager : MonoBehaviour
         {
             GetRandomPosition(out float x, out float y);
             Instantiate(heavyEnemyPrefab, new Vector2(x, y), Quaternion.identity);
+
             heaviesDeployed++;
+            enemiesDeployed++;
         } else
         {
             SpawnAceEnemy();
@@ -72,9 +94,8 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator EnemySpawnRoutine() {
         while (true)
         {
-            if (enemiesDeployed < totalEnemiesInWave)
+            if (enemiesDestroyed < totalEnemiesInWave)
             {
-                yield return new WaitForSeconds(enemySpawnDelay);
                 EnemyType randomEnemyType = (EnemyType)Random.Range(0, System.Enum.GetValues(typeof(EnemyType)).Length);
                 switch (randomEnemyType)
                 {
@@ -83,13 +104,14 @@ public class EnemyManager : MonoBehaviour
                     default: { SpawnBasicEnemies(basicEnemyFlock); break; }
                 }
 
-                enemiesDeployed++;
+                yield return new WaitForSeconds(enemySpawnDelay);
             } else
             {
-                NextWave();
-                // break;
+                break;
             }
         }
+
+        print("Choose upgrade");
     }
 
     private void NextWave() {
@@ -97,6 +119,7 @@ public class EnemyManager : MonoBehaviour
         print("Wave: " + currentWave);
 
         acesDeployed = 0;
+        enemiesDestroyed = 0;
         enemiesDeployed = 0;
     }
 

@@ -89,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
         boostingParticles.Play();
 
         FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
-        FollowCamera.Instance.Hitstop(0.05f);
+        FollowCamera.Instance.Hitstop(0.08f);
 
         boostKilling = true;
         yield return new WaitForSeconds(boostKillTime);

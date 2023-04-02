@@ -48,6 +48,10 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
+    public void Heal() {
+        health++;
+    }
+
     private IEnumerator Flash() {
         while (true)
         {
