@@ -7812,14 +7812,14 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.002057613
-    width: 0.99999994
-    height: 0.9958847
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10.083333
+  orthographic size: 7.625
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
@@ -16612,7 +16612,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 30c3c7069c73b1a4fbb08b8bcf525b37, type: 2}
   - {fileID: 11400000, guid: f37a4ac949831a2499e4392f6fe5b1b4, type: 2}
   - {fileID: 11400000, guid: 419528a1516a4064f89a6cdaf7f86bac, type: 2}
-  enemyPoints: 0
 --- !u!61 &1285180910
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16626,7 +16625,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 26.799889}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -16637,7 +16636,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 196.38, y: 40}
+  m_Size: {x: 196.38, y: 93.59979}
   m_EdgeRadius: 0
 --- !u!1001 &1301602123
 PrefabInstance:
@@ -17722,14 +17721,14 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.002057613
-    width: 0.99999994
-    height: 0.9958847
+    y: 0
+    width: 1
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10.083333
+  orthographic size: 7.625
   m_Depth: 1
   m_CullingMask:
     serializedVersion: 2

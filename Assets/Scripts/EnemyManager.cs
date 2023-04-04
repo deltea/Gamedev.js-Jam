@@ -9,8 +9,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float enemySpawnMin = 1;
     [SerializeField] private float enemySpawnMax = 2;
     [SerializeField] private EnemyObject[] enemies;
+    [SerializeField] private EnemyObject fallbackEnemy;
 
-    public float enemyPoints;
+    private float enemyPoints;
+    private float destroyedEnemyPoints;
     private int currentWave = 0;
 
     BoxCollider2D box;
@@ -29,6 +31,7 @@ public class EnemyManager : MonoBehaviour
         box = GetComponent<BoxCollider2D>();
 
         enemyPoints = startingEnemyPoints;
+        destroyedEnemyPoints = startingEnemyPoints;
 
         NextWave();
         StartCoroutine(EnemySpawnRoutine());
@@ -37,22 +40,23 @@ public class EnemyManager : MonoBehaviour
     private IEnumerator EnemySpawnRoutine() {
         while (true)
         {
-            if (enemyPoints > 0)
+            if (enemyPoints > 0 && destroyedEnemyPoints > 0)
             {
                 EnemyObject randomEnemy = enemies[Random.Range(0, enemies.Length)];
                 GetRandomPosition(out float x, out float y);
                 // TODO: Add probability
                 if (randomEnemy.enemyPoints <= enemyPoints)
                 {
-                    print("Spawned: " + randomEnemy.name + " enemy");
-                    
                     for (int i = 0; i < randomEnemy.count; i++)
                     {
                         Vector2 flockOffset = randomEnemy.count > 1 ? Random.insideUnitCircle * 0.01f : Vector2.zero;
                         Instantiate(randomEnemy.prefab, new Vector2(x, y) + flockOffset, Quaternion.identity);
-                    }
 
-                    enemyPoints -= randomEnemy.enemyPoints;
+                        enemyPoints -= randomEnemy.enemyPoints;
+                    }
+                } else
+                {
+                    Instantiate(fallbackEnemy.prefab, new Vector2(x, y), Quaternion.identity);
                 }
 
                 yield return new WaitForSeconds(Random.Range(enemySpawnMin, enemySpawnMax));
@@ -63,6 +67,11 @@ public class EnemyManager : MonoBehaviour
         }
 
         print("Choose upgrade");
+    }
+
+    public void DestroyEnemy(int enemyPoints) {
+        destroyedEnemyPoints -= enemyPoints;
+        print(destroyedEnemyPoints);
     }
 
     private void NextWave() {

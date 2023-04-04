@@ -369,6 +369,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
+  enemyObject: {fileID: 11400000, guid: f37a4ac949831a2499e4392f6fe5b1b4, type: 2}
 --- !u!114 &4827826265518555860
 MonoBehaviour:
   m_ObjectHideFlags: 0
