@@ -45,7 +45,13 @@ public class EnemyManager : MonoBehaviour
                 if (randomEnemy.enemyPoints <= enemyPoints)
                 {
                     print("Spawned: " + randomEnemy.name + " enemy");
-                    Instantiate(randomEnemy.prefab, new Vector2(x, y), Quaternion.identity);
+                    
+                    for (int i = 0; i < randomEnemy.count; i++)
+                    {
+                        Vector2 flockOffset = randomEnemy.count > 1 ? Random.insideUnitCircle * 0.01f : Vector2.zero;
+                        Instantiate(randomEnemy.prefab, new Vector2(x, y) + flockOffset, Quaternion.identity);
+                    }
+
                     enemyPoints -= randomEnemy.enemyPoints;
                 }
 
