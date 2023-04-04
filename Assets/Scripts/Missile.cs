@@ -18,7 +18,7 @@ public class Missile : MonoBehaviour
 
     void FixedUpdate() {
         Vector2 direction = player.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(Vector3.forward, Quaternion.identity * direction);
+        Utilities.DirectionToRotation(direction, out Quaternion targetRotation);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSmoothing);
 
         missileBody.AddRelativeForce(Vector2.up * speed);

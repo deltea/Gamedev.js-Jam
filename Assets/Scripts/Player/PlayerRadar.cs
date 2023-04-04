@@ -35,7 +35,8 @@ public class PlayerRadar : MonoBehaviour
             {
                 RaycastHit2D hit = Physics2D.Raycast(cam.transform.position, direction, 50, radarBoundsLayer);
                 Vector3 position = ((Vector3)hit.point - cam.transform.position);
-                Instantiate(arrowPrefab, canvasTransform).localPosition = position * (18 - offset);
+                Utilities.DirectionToRotation(hit.normal, out Quaternion facing);
+                Instantiate(arrowPrefab, Vector3.zero, facing, canvasTransform).localPosition = position * (18 - offset);
             }
         }
     }
