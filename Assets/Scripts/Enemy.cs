@@ -22,8 +22,6 @@ public class Enemy : MonoBehaviour
         ParticleManager.Instance.Play(particles, transform.position, Quaternion.identity);
         FollowCamera.Instance.ScreenShake(0.2f, 0.2f);
         FollowCamera.Instance.Hitstop(0.1f);
-
-        EnemyManager.Instance.DestroyedEnemy();
     }
 
     void OnTriggerEnter2D(Collider2D trigger) {
