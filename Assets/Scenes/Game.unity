@@ -16611,6 +16611,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 11400000, guid: 30c3c7069c73b1a4fbb08b8bcf525b37, type: 2}
   - {fileID: 11400000, guid: f37a4ac949831a2499e4392f6fe5b1b4, type: 2}
+  - {fileID: 11400000, guid: 419528a1516a4064f89a6cdaf7f86bac, type: 2}
   enemyPoints: 0
 --- !u!61 &1285180910
 BoxCollider2D:
