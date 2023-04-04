@@ -9,6 +9,7 @@ TagManager:
   - BulletBounds
   - Ground
   - Enemy Bullet
+  - Radar Arrow
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - EnemyBullets
   - GroundCollider
   - Ground
-  - 
+  - RadarBounds
   - 
   - 
   - 
