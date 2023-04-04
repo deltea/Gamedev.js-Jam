@@ -31,9 +31,10 @@ public class PlayerRadar : MonoBehaviour
         foreach (Collider2D enemyCollider in enemiesInRange)
         {
             Vector2 direction = enemyCollider.transform.position - cam.transform.position;
-            if (direction.magnitude > 20)
+            RaycastHit2D hit = Physics2D.Raycast(cam.transform.position, direction, 50, radarBoundsLayer);
+            
+            if (direction.magnitude > hit.distance)
             {
-                RaycastHit2D hit = Physics2D.Raycast(cam.transform.position, direction, 50, radarBoundsLayer);
                 Vector3 position = ((Vector3)hit.point - cam.transform.position);
                 Utilities.DirectionToRotation(hit.normal, out Quaternion facing);
                 Instantiate(arrowPrefab, Vector3.zero, facing, canvasTransform).localPosition = position * (18 - offset);
