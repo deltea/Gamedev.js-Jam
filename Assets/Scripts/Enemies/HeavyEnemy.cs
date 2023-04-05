@@ -10,7 +10,11 @@ public class HeavyEnemy : MonoBehaviour
     [Header("Stats")]
     [SerializeField] private float fireDelay = 2;
 
+    Transform player;
+
     void Start() {
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+
         StartCoroutine(FireRoutine());
     }
 
@@ -18,7 +22,9 @@ public class HeavyEnemy : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(fireDelay);
-            Rigidbody2D missileBody = Instantiate(missilePrefab, transform.position, Quaternion.identity);
+
+            Utilities.DirectionToRotation(player.position - transform.position, out Quaternion rotation);
+            Rigidbody2D missileBody = Instantiate(missilePrefab, transform.position, rotation);
         }
     }
 

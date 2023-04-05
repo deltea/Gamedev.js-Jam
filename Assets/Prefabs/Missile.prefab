@@ -200,5 +200,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf4f973f5cb1794da30e75d64731b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1500
-  rotationSmoothing: 1
+  speed: 3000
+  rotationSmoothing: 0.05
+  explosionDelay: 1
+  activationRange: 5
+  explosionRadius: 5
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
