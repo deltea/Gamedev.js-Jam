@@ -5,6 +5,8 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
 
+    public Vector2 fallbackPosition;
+
     [SerializeField] private float smoothing = 0.1f;
     [SerializeField] private float dynamicCamera = 5;
     [SerializeField] private Transform player;
@@ -26,6 +28,7 @@ public class FollowCamera : MonoBehaviour
 
     void Update() {
         Vector3 initialPosition = transform.localPosition;
+
         if (shakeDuration > 0) {
             transform.localPosition = initialPosition + Random.insideUnitSphere * shakeMagnitude;
             shakeDuration -= Time.unscaledDeltaTime * dampingSpeed;
@@ -36,8 +39,16 @@ public class FollowCamera : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Vector3 targetPos = new Vector3(player.position.x, player.position.y, -10);
-        targetPos += player.rotation * Vector3.up * dynamicCamera;
+        Vector3 targetPos;
+        if (player != null)
+        {
+            targetPos = new Vector3(player.position.x, player.position.y, -10);
+        } else
+        {
+            targetPos = new Vector3(fallbackPosition.x, fallbackPosition.y, -10);
+        }
+        
+        if (player != null) targetPos += player.rotation * Vector3.up * dynamicCamera;
         targetPos.z = -10;
         transform.position = Vector3.Lerp(transform.position, targetPos, smoothing);
     }

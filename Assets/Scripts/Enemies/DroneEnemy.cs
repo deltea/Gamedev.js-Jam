@@ -64,7 +64,7 @@ public class DroneEnemy : MonoBehaviour
         yield return new WaitForSeconds(explodeDelay);
 
         bool hitPlayer = Physics2D.OverlapCircle(transform.position, explosionRadius, playerLayer);
-        if (hitPlayer && !PlayerHealth.Instance.isInvincible)
+        if (hitPlayer && !PlayerHealth.Instance.isInvincible && !PlayerHealth.Instance.isDead)
         {
             PlayerHealth.Instance.GetHurt();
         }

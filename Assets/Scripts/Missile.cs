@@ -44,7 +44,7 @@ public class Missile : MonoBehaviour
         ParticleManager.Instance.Play(ParticleManager.Instance.enemyExplosion, transform.position, Quaternion.identity);
 
         bool hitPlayer = Physics2D.OverlapCircle(transform.position, explosionRadius, playerLayer);
-        if (hitPlayer && !PlayerHealth.Instance.isInvincible)
+        if (hitPlayer && !PlayerHealth.Instance.isInvincible && !PlayerHealth.Instance.isDead)
         {
             PlayerHealth.Instance.GetHurt();
         }

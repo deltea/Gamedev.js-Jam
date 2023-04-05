@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
 
     public bool isInvincible = false;
+    public bool isDead = false;
 
     [SerializeField] private Transform heartPrefab;
     [SerializeField] private Transform heartBar;
@@ -17,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
     private int health;
 
     Collider2D playerCollider;
+    Rigidbody2D playerBody;
 
     #region Singleton
     
@@ -30,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Start() {
         playerCollider = GetComponent<Collider2D>();
+        playerBody = GetComponent<Rigidbody2D>();
 
         health = maxHealth;
         AddHearts(maxHealth);
@@ -76,7 +79,18 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void Die() {
-        print("You DIED");
+        isDead = true;
+        
+        FollowCamera.Instance.ScreenShake(0.5f, 0.3f);
+        FollowCamera.Instance.Hitstop(0.5f);
+
+        EnemyManager.Instance.DestroyAllEnemies();
+
+        PlayerMovement.Instance.boosting = false;
+        PlayerMovement.Instance.boostReady = false;
+
+        playerBody.gravityScale = 1;
+        playerBody.drag = 0;
     }
 
     private void AddHearts(int amount) {
@@ -87,9 +101,12 @@ public class PlayerHealth : MonoBehaviour
                 Instantiate(heartPrefab, heartBar);
             }
         } else if (amount < 0) {
-            for (int i = 0; i < Mathf.Abs(amount); i++)
+            if (heartBar.childCount > 0)
             {
-                Destroy(heartBar.GetChild(0).gameObject);
+                for (int i = 0; i < Mathf.Abs(amount); i++)
+                {
+                    Destroy(heartBar.GetChild(0).gameObject);
+                }
             }
         }
     }
@@ -98,7 +115,7 @@ public class PlayerHealth : MonoBehaviour
         if (trigger.CompareTag("Enemy") && PlayerMovement.Instance.boostKilling)
         {
             trigger.GetComponent<Enemy>().Die(ParticleManager.Instance.explosion);
-        } else if (trigger.CompareTag("Enemy Bullet") && !isInvincible && !PlayerMovement.Instance.boostKilling)
+        } else if (trigger.CompareTag("Enemy Bullet") && !isDead && !isInvincible && !PlayerMovement.Instance.boostKilling)
         {
             Destroy(trigger.gameObject);
             GetHurt();

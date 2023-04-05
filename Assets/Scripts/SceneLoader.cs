@@ -20,4 +20,13 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
+    public void LoadSceneWithDelay(string sceneName, float delay) {
+        StartCoroutine(LoadSceneWithDelayRoutine(sceneName, delay));
+    }
+
+    private IEnumerator LoadSceneWithDelayRoutine(string sceneName, float delay) {
+        yield return new WaitForSeconds(delay);
+        LoadScene(sceneName);
+    }
+
 }

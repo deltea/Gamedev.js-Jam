@@ -7280,6 +7280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 459211246}
   - component: {fileID: 459211247}
+  - component: {fileID: 459211248}
   m_Layer: 9
   m_Name: Ground Collider
   m_TagString: Untagged
@@ -7300,7 +7301,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1139126974}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &459211247
 CircleCollider2D:
@@ -7318,6 +7319,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &459211248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459211245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c857cb7a9d0dd1c4dba3a466be88a476, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &460776747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7758,6 +7771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcea26753d31a824c9c4fdf20c437f46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallbackPosition: {x: 0, y: 0}
   smoothing: 0.1
   dynamicCamera: 5
   player: {fileID: 1139126974}
@@ -8987,6 +9001,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosion: {fileID: 1067332755706026249, guid: 635e372bd64ca8046ab5e684ee2ff10b, type: 3}
+  bigExplosion: {fileID: 1067332755706026249, guid: 76ab5ff11e73cf14899a922b7631785f, type: 3}
   enemyExplosion: {fileID: 1067332755706026249, guid: 053209502b640bb4296685b88597487e, type: 3}
 --- !u!1001 &773118611
 PrefabInstance:
@@ -20237,7 +20252,7 @@ Transform:
   m_Children:
   - {fileID: 2143028305}
   m_Father: {fileID: 1139126974}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!210 &1134254212
 SortingGroup:
@@ -20288,9 +20303,9 @@ Transform:
   - {fileID: 810158392}
   - {fileID: 2093070175}
   - {fileID: 949038356}
+  - {fileID: 459211246}
   - {fileID: 1159863112}
   - {fileID: 1134254211}
-  - {fileID: 459211246}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -20324,6 +20339,8 @@ MonoBehaviour:
   boostingTurnSpeed: 8
   thrustingAngularDrag: 30
   boostKilling: 0
+  boostReady: 1
+  boosting: 0
 --- !u!114 &1139126976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20416,12 +20433,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInvincible: 0
+  isDead: 0
   heartPrefab: {fileID: 8325770623214387990, guid: a821b26e97482cb45a2d7cf111bc39d6, type: 3}
   heartBar: {fileID: 1678816068}
   graphics: {fileID: 1134254210}
   invincibleTime: 2
   invincibleFlashDelay: 0.2
-  maxHealth: 5
+  maxHealth: 1
 --- !u!114 &1139126981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20537,7 +20555,7 @@ Transform:
   m_Children:
   - {fileID: 326666320}
   m_Father: {fileID: 1139126974}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1159863113
 MonoBehaviour:
@@ -21215,6 +21233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 728dbea48f4068044a4798bb41ef5c29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnEnemies: 1
   startingEnemyPoints: 150
   enemySpawnMin: 4
   enemySpawnMax: 6
@@ -21943,7 +21962,7 @@ Transform:
   m_GameObject: {fileID: 1503875596}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -38, z: 0}
-  m_LocalScale: {x: 200, y: 50, z: 1}
+  m_LocalScale: {x: 2000, y: 50, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1460522786}

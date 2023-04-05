@@ -6,6 +6,7 @@ public class ParticleManager : MonoBehaviour
 {
 
     public ParticleSystem explosion;
+    public ParticleSystem bigExplosion;
     public ParticleSystem enemyExplosion;
 
     #region Singleton

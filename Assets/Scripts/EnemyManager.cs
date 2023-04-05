@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
 
+    public bool spawnEnemies = true;
+
     [SerializeField] private float startingEnemyPoints = 100;
     [SerializeField] private float enemySpawnMin = 1;
     [SerializeField] private float enemySpawnMax = 2;
@@ -37,32 +39,37 @@ public class EnemyManager : MonoBehaviour
         StartCoroutine(EnemySpawnRoutine());
     }
 
-    private IEnumerator EnemySpawnRoutine() {
+    public IEnumerator EnemySpawnRoutine() {
         while (true)
         {
-            if (enemyPoints > 0 && destroyedEnemyPoints > 0)
+            if (!PlayerHealth.Instance.isDead)
             {
-                EnemyObject randomEnemy = enemies[Random.Range(0, enemies.Length)];
-                GetRandomPosition(out float x, out float y);
-                // TODO: Add probability
-                if (randomEnemy.enemyPoints <= enemyPoints)
+                if (enemyPoints > 0 && destroyedEnemyPoints > 0)
                 {
-                    for (int i = 0; i < randomEnemy.count; i++)
+                    EnemyObject randomEnemy = enemies[Random.Range(0, enemies.Length)];
+                    GetRandomPosition(out float x, out float y);
+                    // TODO: Add probability
+                    if (randomEnemy.enemyPoints <= enemyPoints)
                     {
-                        Vector2 flockOffset = randomEnemy.count > 1 ? Random.insideUnitCircle * 0.01f : Vector2.zero;
-                        Instantiate(randomEnemy.prefab, new Vector2(x, y) + flockOffset, Quaternion.identity);
+                        for (int i = 0; i < randomEnemy.count; i++)
+                        {
+                            Vector2 flockOffset = randomEnemy.count > 1 ? Random.insideUnitCircle * 0.01f : Vector2.zero;
+                            Instantiate(randomEnemy.prefab, new Vector2(x, y) + flockOffset, Quaternion.identity);
 
-                        enemyPoints -= randomEnemy.enemyPoints;
+                            enemyPoints -= randomEnemy.enemyPoints;
+                        }
+                    } else
+                    {
+                        Instantiate(fallbackEnemy.prefab, new Vector2(x, y), Quaternion.identity);
                     }
+
+                    yield return new WaitForSeconds(Random.Range(enemySpawnMin, enemySpawnMax));
                 } else
                 {
-                    Instantiate(fallbackEnemy.prefab, new Vector2(x, y), Quaternion.identity);
+                    break;
                 }
-
-                yield return new WaitForSeconds(Random.Range(enemySpawnMin, enemySpawnMax));
-            } else
-            {
-                break;
+            } else {
+                yield return null;
             }
         }
 
@@ -72,6 +79,21 @@ public class EnemyManager : MonoBehaviour
     public void DestroyEnemy(int enemyPoints) {
         destroyedEnemyPoints -= enemyPoints;
         print(destroyedEnemyPoints);
+    }
+
+    public void DestroyAllEnemies() {
+        print("dfdf");
+        foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            Enemy enemyScript = enemy.GetComponent<Enemy>();
+            if (enemyScript != null)
+            {
+                enemyScript.Die(ParticleManager.Instance.enemyExplosion);
+            } else
+            {
+                Destroy(enemy);
+            }
+        }
     }
 
     private void NextWave() {
