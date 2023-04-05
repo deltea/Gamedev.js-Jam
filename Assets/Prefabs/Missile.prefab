@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7888101311059040582}
   - component: {fileID: 2133536619089879631}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1159466022379332914}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Graphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -128,9 +128,9 @@ GameObject:
   - component: {fileID: 8819676298580158014}
   - component: {fileID: 8819676298580158015}
   - component: {fileID: 197002652697425814}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Missile
-  m_TagString: Enemy Bullet
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

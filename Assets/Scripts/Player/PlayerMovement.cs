@@ -19,9 +19,11 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Boosting")]
     [SerializeField] private float boostingForce = 10;
+    [SerializeField] private float boostCooldown = 3;
     [SerializeField] private float boostStartForce = 5;
     [SerializeField] private float boostKillTime = 0.5f;
     [SerializeField] private ParticleSystem boostingParticles;
+    [SerializeField] private ParticleSystem boostReadyParticles;
 
     [Header("Turning")]
     [SerializeField] private float turnSpeed = 5;
@@ -38,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D playerBody;
     float originalDrag;
     float originalAngularDrag;
+    bool boostReady = true;
 
     #region Singleton
     
@@ -85,15 +88,27 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private IEnumerator Boost() {
-        playerBody.AddRelativeForce(Vector2.up * boostStartForce, ForceMode2D.Impulse);
-        boostingParticles.Play();
+        if (boostReady)
+        {
+            boostReady = false;
+            StartCoroutine(Cooldown());
+            
+            playerBody.AddRelativeForce(Vector2.up * boostStartForce, ForceMode2D.Impulse);
+            boostingParticles.Play();
 
-        FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
-        FollowCamera.Instance.Hitstop(0.08f);
+            FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
+            FollowCamera.Instance.Hitstop(0.08f);
 
-        boostKilling = true;
-        yield return new WaitForSeconds(boostKillTime);
-        boostKilling = false;
+            boostKilling = true;
+            yield return new WaitForSeconds(boostKillTime);
+            boostKilling = false;
+        }
+    }
+
+    private IEnumerator Cooldown() {
+        yield return new WaitForSeconds(boostCooldown);
+        boostReady = true;
+        boostReadyParticles.Play();
     }
 
     void OnRotation(InputValue value) {
