@@ -41,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
     float originalDrag;
     float originalAngularDrag;
     bool boostReady = true;
+    bool boosting = false;
 
     #region Singleton
     
@@ -80,29 +81,27 @@ public class PlayerMovement : MonoBehaviour
         playerBody.gravityScale = (int)thrustInput ^ 1;
         playerBody.angularDrag = thrustInput > 0 ? thrustingAngularDrag : originalAngularDrag;
 
-        float force = thrustInput * (boostInput > 0 ? boostingForce : thrustForce);
-        float turn = thrustInput > 0 ? (boostInput > 0 ? boostingTurnSpeed : thrustingTurnSpeed) : turnSpeed;
+        float force = thrustInput * ((boostInput > 0 && boosting) ? boostingForce : thrustForce);
+        float turn = thrustInput > 0 ? ((boostInput > 0 && boosting) ? boostingTurnSpeed : thrustingTurnSpeed) : turnSpeed;
 
         playerBody.AddRelativeForce(Vector2.up * force);
         playerBody.AddTorque(turnInput * turn);
     }
 
     private IEnumerator Boost() {
-        if (boostReady)
-        {
-            boostReady = false;
-            StartCoroutine(Cooldown());
-            
-            playerBody.AddRelativeForce(Vector2.up * boostStartForce, ForceMode2D.Impulse);
-            boostingParticles.Play();
+        boostReady = false;
+        
+        StartCoroutine(Cooldown());
+        
+        playerBody.AddRelativeForce(Vector2.up * boostStartForce, ForceMode2D.Impulse);
+        boostingParticles.Play();
 
-            FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
-            FollowCamera.Instance.Hitstop(0.08f);
+        FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
+        FollowCamera.Instance.Hitstop(0.08f);
 
-            boostKilling = true;
-            yield return new WaitForSeconds(boostKillTime);
-            boostKilling = false;
-        }
+        boostKilling = true;
+        yield return new WaitForSeconds(boostKillTime);
+        boostKilling = false;
     }
 
     private IEnumerator Cooldown() {
@@ -118,8 +117,13 @@ public class PlayerMovement : MonoBehaviour
     void OnThrust(InputValue value) {
         thrustInput = value.Get<float>();
 
-        if (boostInput > 0 && thrustInput > 0) StartCoroutine(Boost());
-        else boostingParticles.Stop();
+        if (boostInput > 0 && thrustInput > 0 && boostReady) {
+            boosting = true;
+            StartCoroutine(Boost());
+        } else {
+            boosting = false;
+            boostingParticles.Stop();
+        }
 
         if (thrustInput > 0 && boostInput == 0) thrustParticles.Play();
         else if (thrustInput == 0) thrustParticles.Stop();
@@ -128,12 +132,14 @@ public class PlayerMovement : MonoBehaviour
     void OnBoost(InputValue value) {
         boostInput = value.Get<float>();
 
-        if (boostInput > 0 && thrustInput > 0) {
+        if (boostInput > 0 && thrustInput > 0 && boostReady) {
+            boosting = true;
             thrustParticles.Stop();
             StartCoroutine(Boost());
         }
         else if (boostInput == 0) {
             boostingParticles.Stop();
+            boosting = false;
             if (thrustInput > 0) thrustParticles.Play();
         }
     }

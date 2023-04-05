@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 8819676298580158015, guid: 0716e0f9f9ed2a94784bbe3566d62544, type: 3}
-  fireDelay: 5
+  fireDelay: 10
 --- !u!1 &6714452228390815009
 GameObject:
   m_ObjectHideFlags: 0

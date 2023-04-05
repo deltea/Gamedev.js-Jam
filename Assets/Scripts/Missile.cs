@@ -42,7 +42,6 @@ public class Missile : MonoBehaviour
         yield return new WaitForSeconds(explosionDelay);
 
         ParticleManager.Instance.Play(ParticleManager.Instance.enemyExplosion, transform.position, Quaternion.identity);
-        AudioManager.Instance.PlayRandomSound(AudioManager.Instance.explosions);
 
         bool hitPlayer = Physics2D.OverlapCircle(transform.position, explosionRadius, playerLayer);
         if (hitPlayer && !PlayerHealth.Instance.isInvincible)

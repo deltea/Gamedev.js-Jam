@@ -7,6 +7,8 @@ public class PlayerHealth : MonoBehaviour
 
     public bool isInvincible = false;
 
+    [SerializeField] private Transform heartPrefab;
+    [SerializeField] private Transform heartBar;
     [SerializeField] private GameObject graphics;
     [SerializeField] private float invincibleTime = 2;
     [SerializeField] private float invincibleFlashDelay = 0.2f;
@@ -27,16 +29,16 @@ public class PlayerHealth : MonoBehaviour
     #endregion
 
     void Start() {
-        health = maxHealth;
-
         playerCollider = GetComponent<Collider2D>();
+
+        health = maxHealth;
+        AddHearts(maxHealth);
     }
 
     public void GetHurt() {
         health--;
+        AddHearts(-1);
         StartCoroutine(Invincible());
-
-        AudioManager.Instance.PlaySound(AudioManager.Instance.hurt);
 
         FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
         FollowCamera.Instance.Hitstop(0.1f);
@@ -50,6 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Heal() {
         health++;
+        AddHearts(1);
     }
 
     private IEnumerator Flash() {
@@ -74,6 +77,21 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die() {
         print("You DIED");
+    }
+
+    private void AddHearts(int amount) {
+        if (amount > 0)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                Instantiate(heartPrefab, heartBar);
+            }
+        } else if (amount < 0) {
+            for (int i = 0; i < Mathf.Abs(amount); i++)
+            {
+                Destroy(heartBar.GetChild(0).gameObject);
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D trigger) {
