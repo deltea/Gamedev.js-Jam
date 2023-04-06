@@ -40,7 +40,6 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D playerBody;
     float originalDrag;
     float originalAngularDrag;
-    public bool boostReady = true;
     public bool boosting = false;
 
     #region Singleton
@@ -113,18 +112,10 @@ public class PlayerMovement : MonoBehaviour
     private void StopBoost() {
         if (!PlayerHealth.Instance.isDead)
         {
-            boostReady = false;
             boosting = false;
 
             boostingParticles.Stop();
-            StartCoroutine(Cooldown());
         }
-    }
-
-    private IEnumerator Cooldown() {
-        yield return new WaitForSeconds(boostCooldown);
-        boostReady = true;
-        boostReadyParticles.Play();
     }
 
     void OnRotation(InputValue value) {
@@ -136,11 +127,11 @@ public class PlayerMovement : MonoBehaviour
 
         if (!PlayerHealth.Instance.isDead)
         {
-            // if (boostInput > 0) {
-            //     if (thrustInput > 0 && boostReady) StartCoroutine(Boost());
-            // } else {
-            //     StopBoost();
-            // }
+            if (boostInput > 0) {
+                if (thrustInput > 0) StartCoroutine(Boost());
+            } else {
+                StopBoost();
+            }
 
             if (thrustInput > 0 /*&& boostInput == 0*/) thrustParticles.Play();
             else if (thrustInput == 0) thrustParticles.Stop();
@@ -150,19 +141,19 @@ public class PlayerMovement : MonoBehaviour
     void OnBoost(InputValue value) {
         boostInput = value.Get<float>();
         
-        // if (!PlayerHealth.Instance.isDead)
-        // {
-        //     if (boostInput > 0) {
-        //         if (thrustInput > 0 && boostReady)
-        //         {
-        //             thrustParticles.Stop();
-        //             StartCoroutine(Boost());
-        //         }
-        //     } else {
-        //         StopBoost();
-        //         if (thrustInput > 0) thrustParticles.Play();
-        //     }
-        // }
+        if (!PlayerHealth.Instance.isDead)
+        {
+            if (boostInput > 0) {
+                if (thrustInput > 0)
+                {
+                    thrustParticles.Stop();
+                    StartCoroutine(Boost());
+                }
+            } else {
+                StopBoost();
+                if (thrustInput > 0) thrustParticles.Play();
+            }
+        }
     }
 
 }
