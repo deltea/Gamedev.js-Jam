@@ -97,8 +97,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Boost() {
         if (!PlayerHealth.Instance.isDead)
         {
-            boostReady = false;
-                    
+            boosting = true;
             playerBody.AddRelativeForce(Vector2.up * boostStartForce, ForceMode2D.Impulse);
             boostingParticles.Play();
 
@@ -108,6 +107,17 @@ public class PlayerMovement : MonoBehaviour
             boostKilling = true;
             yield return new WaitForSeconds(boostKillTime);
             boostKilling = false;
+        }
+    }
+
+    private void StopBoost() {
+        if (!PlayerHealth.Instance.isDead)
+        {
+            boostReady = false;
+            boosting = false;
+
+            boostingParticles.Stop();
+            StartCoroutine(Cooldown());
         }
     }
 
@@ -126,16 +136,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (!PlayerHealth.Instance.isDead)
         {
-            if (boostInput > 0 && thrustInput > 0 && boostReady) {
-                boosting = true;
-                StartCoroutine(Boost());
-            } else {
-                boosting = false;
-                StartCoroutine(Cooldown());
-                boostingParticles.Stop();
-            }
+            // if (boostInput > 0) {
+            //     if (thrustInput > 0 && boostReady) StartCoroutine(Boost());
+            // } else {
+            //     StopBoost();
+            // }
 
-            if (thrustInput > 0 && boostInput == 0) thrustParticles.Play();
+            if (thrustInput > 0 /*&& boostInput == 0*/) thrustParticles.Play();
             else if (thrustInput == 0) thrustParticles.Stop();
         }
     }
@@ -143,20 +150,19 @@ public class PlayerMovement : MonoBehaviour
     void OnBoost(InputValue value) {
         boostInput = value.Get<float>();
         
-        if (!PlayerHealth.Instance.isDead)
-        {
-            if (boostInput > 0 && thrustInput > 0 && boostReady) {
-                boosting = true;
-                thrustParticles.Stop();
-                StartCoroutine(Boost());
-            }
-            else if (boostInput == 0) {
-                boosting = false;
-                StartCoroutine(Cooldown());
-                boostingParticles.Stop();
-                if (thrustInput > 0) thrustParticles.Play();
-            }
-        }
+        // if (!PlayerHealth.Instance.isDead)
+        // {
+        //     if (boostInput > 0) {
+        //         if (thrustInput > 0 && boostReady)
+        //         {
+        //             thrustParticles.Stop();
+        //             StartCoroutine(Boost());
+        //         }
+        //     } else {
+        //         StopBoost();
+        //         if (thrustInput > 0) thrustParticles.Play();
+        //     }
+        // }
     }
 
 }

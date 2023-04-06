@@ -86,8 +86,7 @@ public class PlayerHealth : MonoBehaviour
 
         EnemyManager.Instance.DestroyAllEnemies();
 
-        PlayerMovement.Instance.boosting = false;
-        PlayerMovement.Instance.boostReady = false;
+        // PlayerMovement.Instance.boostReady = false;
 
         playerBody.gravityScale = 1;
         playerBody.drag = 0;
