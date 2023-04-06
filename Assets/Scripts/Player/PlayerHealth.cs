@@ -43,13 +43,17 @@ public class PlayerHealth : MonoBehaviour
         AddHearts(-1);
         StartCoroutine(Invincible());
 
-        FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
-        FollowCamera.Instance.Hitstop(0.1f);
-
         print("Oooooff! Your health is now: " + health);
         if (health <= 0)
         {
+            FollowCamera.Instance.Hitstop(1);
+            FollowCamera.Instance.ScreenShake(0.5f, 0.3f);
+
             Die();
+        } else
+        {
+            FollowCamera.Instance.ScreenShake(0.1f, 0.2f);
+            FollowCamera.Instance.Hitstop(0.1f);
         }
     }
 
@@ -81,9 +85,6 @@ public class PlayerHealth : MonoBehaviour
     private void Die() {
         isDead = true;
         
-        FollowCamera.Instance.ScreenShake(0.5f, 0.3f);
-        FollowCamera.Instance.Hitstop(0.5f);
-
         EnemyManager.Instance.DestroyAllEnemies();
 
         // PlayerMovement.Instance.boostReady = false;
